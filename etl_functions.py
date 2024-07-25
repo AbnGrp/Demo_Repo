@@ -66,3 +66,17 @@ def get_year(date):
         if re.match(r'^\d{4}-\d{2}-\d{2}$', date):
             return date.split('-')[0]
     return 'Not available data'
+
+'''The following function takes as input a dataframe and two
+columns and outputs the percentage of values that are common to both
+columns'''
+
+def column_comparator(data,c1,c2):
+  j=0
+  for i in data.index:
+    if data.loc[i,c1]==data.loc[i,c2]:
+      j+=1
+  percentage=round(((j*100)/len(data.index)),2)
+  return f'The percentage of common values for the columns {c1} and {c2} is {percentage}%'
+
+
