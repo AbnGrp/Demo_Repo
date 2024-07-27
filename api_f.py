@@ -81,8 +81,7 @@ def best_developer_year(year: int):
   return {"Puesto 1":final_series[0],"Puesto 2":final_series[1],"Puesto 3":final_series[2]}
 
 
-
-""" def developer_reviews_analysis(desarrolladora: str):
+def developer_reviews_analysis(desarrolladora: str):
   df_dev_rev=df_greviews[df_greviews["developer"]==desarrolladora]
   
   dev_rev_new=df_dev_rev["sentiment_analysis"].value_counts().reset_index()
@@ -98,28 +97,9 @@ def best_developer_year(year: int):
   neutral=dev_rev_new.iloc[1,1]
   positive=dev_rev_new.iloc[2,1]
   
-  return {f"{desarrolladora}:[Negativos:{negative}, Neutrales: {neutral}, Positivos:{positive}]"} """
+  return {f"{desarrolladora}:[Negativos:{negative}, Neutrales: {neutral}, Positivos:{positive}]"} 
   
 
 
-""" def developer_reviews_analysis(desarrolladora: str):
-    df_dev_rev = df_greviews[df_greviews["developer"] == desarrolladora]
 
-    dev_rev_new = df_dev_rev["sentiment_analysis"].value_counts().reset_index()
-    dev_rev_new.columns = ['sentiment_analysis', 'count']
-
-    if not (dev_rev_new['sentiment_analysis'] == 0).any():
-        dev_rev_new = pd.concat([dev_rev_new, pd.DataFrame({'sentiment_analysis': [0], 'count': [0]})], ignore_index=True)
-    if not (dev_rev_new['sentiment_analysis'] == 1).any():
-        dev_rev_new = pd.concat([dev_rev_new, pd.DataFrame({'sentiment_analysis': [1], 'count': [0]})], ignore_index=True)
-    if not (dev_rev_new['sentiment_analysis'] == 2).any():
-        dev_rev_new = pd.concat([dev_rev_new, pd.DataFrame({'sentiment_analysis': [2], 'count': [0]})], ignore_index=True)
-
-    dev_rev_new.sort_values(by=["sentiment_analysis"], inplace=True, ignore_index=True)
-
-    negative = dev_rev_new.loc[dev_rev_new['sentiment_analysis'] == 0, 'count'].values[0]
-    neutral = dev_rev_new.loc[dev_rev_new['sentiment_analysis'] == 1, 'count'].values[0]
-    positive = dev_rev_new.loc[dev_rev_new['sentiment_analysis'] == 2, 'count'].values[0]
-
-    return {"Negativos": negative,"Neutrales": neutral,"Positivos": positive} """
 
