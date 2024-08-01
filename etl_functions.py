@@ -1,6 +1,8 @@
 import pandas as pd
 import ast
 import re
+from langdetect import detect
+from nltk.sentiment import SentimentIntensityAnalyzer
 
 '''The following function counts the number of empty and null values
 in a pandas series. (Supports the function below: general_information).'''
@@ -78,5 +80,34 @@ def column_comparator(data,c1,c2):
       j+=1
   percentage=round(((j*100)/len(data.index)),2)
   return f'The percentage of common values for the columns {c1} and {c2} is {percentage}%'
+
+'''The following function detects the language in which a piece of 
+text is written '''
+
+def detect_language(t):
+  try:
+    return detect(t)
+  except:
+    return None
+
+'''The following function applies sentiment analysis to a column
+containing text'''
+
+def analyze_sentiments(df):
+    sia = SentimentIntensityAnalyzer()
+    df['compound_score']=df['review'].apply(lambda review: sia.polarity_scores(review)['compound'])
+    df['sentiment_analysis']=df['compound_score'].apply(lambda score: 0 if score < 0 else (1 if score == 0 else 2))
+    return df
+
+'''The following function takes as input a dataframe and a column
+containing lists as its values, then returns a new dataframe in which
+the input column now contains individual values rather than lists'''
+
+def explode_column(df, column):
+    if column not in df.columns:
+        raise ValueError(f"The column '{column}' does not exist in the dataframe")
+    df_expanded = df.explode(column).reset_index(drop=True)
+    return df_expanded
+
 
 
